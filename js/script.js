@@ -32,7 +32,9 @@ const initTimer = maxTime => {
 }
 
 initGame = async () => {
-    hintText.classList.toggle("hide");    
+    if(!hintText.classList.contains("hide")){
+        hintText.classList.toggle("hide"); 
+    }   
     initTimer(30);
     let randomObj;
     // let showWord=1;

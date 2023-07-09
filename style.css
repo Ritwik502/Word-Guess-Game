@@ -70,6 +70,7 @@ body{
   font-weight: 500;
   padding: 16px 25px;
   border-bottom: 1px solid #ccc;
+  text-align: center;
 }
 .container .content{
   margin: 25px 20px 35px;
