@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Word Guess Game </title>
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="blurt.min.css" />
+    <script src="blurt.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="toast.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="  container info flex-child left">
+        <h2>RULES:</h2>
+        <div class="rules">
+          <ol>
+           <li> <p>create a word from the given characters.</p></li>
+            <li><p>You can use the character any number of times.</p></li>
+            <li><p>Bonus for guessing onger words.</p></li>
+            <li><p>Once you have entered a word with n characters you can only entre words simmilar or bigger in length.</p></li>
+            <li><p>Entre word within 30 seconds.</p></li>
+          </ol>
+        </div>
+      </div>
+      <div class=" container flex-child right">
+        <h2>Word Guess</h2>
+        <div class="content">
+          <p class="word"></p>
+          <div class="details">
+            <p id="hint-txt">Hint:</p>
+            <p class="time">
+              Time Left: <span><b>30</b>s</span>
+            </p>
+          </div>
+          <input
+            type="text"
+            spellcheck="false"
+            placeholder="Enter a valid word"
+          />
+          <div class="buttons">
+            <button class="refresh-word" id="refresh-word">show Hint</button>
+            <button class="check-word">Check Word</button>
+          </div>
+          <div class="score">
+            <div class="scoreBox">score = <span></span></div>
+            <div class="highscoreBox">Highscore = <span></span></div>
+          </div>
+        </div>
+      </div>
+      <div id="snackbar">Some text some message..</div>
+    </div>
+  </body>
+</html>
