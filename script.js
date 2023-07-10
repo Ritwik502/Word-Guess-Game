@@ -9,6 +9,7 @@ const wordText = document.querySelector(".word"),
     toastmsg=document.getElementById("snackbar");
 
 curScore.innerHTML = 0;
+curhighscore.innerHTML = 0;
 let correctWord, timer, score = 0, curLength = 4,wordArray,highscore=0;
 // let letters = new Map();
 const url1 = 'https://random-word-api.herokuapp.com/word?length=';
@@ -25,9 +26,18 @@ const initTimer = maxTime => {
         highscore=0;
         curhighscore.innerHTML=highscore;
         curLength = 4;
-        alert(`Time off! ${correctWord.toUpperCase()} was the correct word`);
-
-        initGame();
+        //sncksjdncjsdbcuisdcdisddbcuwbciwubcweubiucwb
+        // alert(`Time off! ${correctWord.toUpperCase()} was the correct word`);
+        Swal.fire({
+            title: 'GAME OVER!',
+            text: ("You took too long. "+correctWord+ " was the correct word"),
+            confirmButtonText: 'Restart',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              initGame();
+            }
+          })
+          initGame();
     }, 1000);
 }
 
@@ -130,7 +140,7 @@ const checkWord = async () => {
                 curLength = 4;
                 Swal.fire({
                     title: 'GAME OVER!',
-                    text: (userWord+ "isnt a valid word"),
+                    text: (userWord+ " isn't a valid word"),
                     confirmButtonText: 'Restart',
                   }).then((result) => {
                     if (result.isConfirmed) {
