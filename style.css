@@ -66,6 +66,8 @@ body{
   border-radius: 7px;
   background: #d5f2e3;
   box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .info{
   margin-bottom: 100px;
