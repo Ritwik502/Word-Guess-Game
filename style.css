@@ -1,5 +1,21 @@
 /* Import Google font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+@media (min-width: 1200px) {
+  .flex-container {
+    display: flex;
+  }
+  
+  .flex-child {
+    flex: 1;
+    border: 2px solid yellow;
+  }  
+  
+  .flex-child:first-child {
+    margin-right: 20px;
+  } 
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -172,15 +188,3 @@ body{
     width: calc(100% / 2 - 7px);
   }
 }
-.flex-container {
-  display: flex;
-}
-
-.flex-child {
-  flex: 1;
-  border: 2px solid yellow;
-}  
-
-.flex-child:first-child {
-  margin-right: 20px;
-} 
