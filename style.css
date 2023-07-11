@@ -12,7 +12,7 @@ body{
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #5372F0;
+  background: #73ba9b;
 }
 #hint-txt{
   text-align: center;
@@ -48,7 +48,7 @@ body{
 .container{
   width: 440px;
   border-radius: 7px;
-  background: #fff;
+  background: #d5f2e3;
   box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 .info{
@@ -133,16 +133,16 @@ body{
   transform: scale(0.97);
 }
 .buttons .refresh-word{
-  background: #6C757D;
+  background: #01110a;
 }
 .buttons .refresh-word:hover{
   background: #5f666d;
 }
 .buttons .check-word{
-  background: #5372F0;
+  background: #ba2d0b;
 }
 .buttons .check-word:hover{
-  background: #2c52ed;
+  background: #ab0b0b;
 }
 
 @media screen and (max-width: 470px) {

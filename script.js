@@ -132,7 +132,12 @@ const checkWord = async () => {
                     curhighscore.innerHTML=highscore;
                 }
                 curLength = userWord.length;
-                console.log("You created a " + curLength + " long word!");
+// sdjygyfweuygfiwuegfiewgfauyewgfiuqwgfiuqewgfquiewgfiuwygfuiyqewgfiuyewgfiuwqygfqiyuewgfiqyewugfqiewufqwuef
+toastmsg.innerHTML="+"+userWord.length +" points";
+toastmsg.className = "show";
+setTimeout(function(){ toastmsg.className = toastmsg.className.replace("show", ""); }, 1500);
+                // console.log("You created a " + curLength + " long word!");
+                initGame();
             }
             else {
                 score = 0;
@@ -168,9 +173,7 @@ const checkWord = async () => {
         // replace alert with new toast
 
 
-        // var x = document.getElementById("snackbar");
-        // let newtxt="Congrats!"+correctWord.toUpperCase()+" is the correct word";
-        toastmsg.innerHTML="Congrats! "+correctWord.toUpperCase()+" is the correct word";;
+        toastmsg.innerHTML="Congrats! "+correctWord.toUpperCase()+" is the correct word. \n +"+userWord.length * 3 +" points";
         toastmsg.className = "show";
         setTimeout(function(){ toastmsg.className = toastmsg.className.replace("show", ""); }, 1500);
 
