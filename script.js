@@ -10,10 +10,13 @@ const wordText = document.querySelector(".word"),
 
 curScore.innerHTML = 0;
 curhighscore.innerHTML = 0;
-let correctWord, timer, score = 0, curLength = 4,wordArray,highscore=0;
+let correctWord, timer, score = 0, curLength = 4,wordArray,highscore=0,globalHighscore=0;
 // let letters = new Map();
 const url1 = 'https://random-word-api.herokuapp.com/word?length=';
 const url2 = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
+const url3 = 'https://zany-overalls-tick.cyclic.app/players/';
+const url4 = 'https://leaderboard-1w46.onrender.com/players';
+
 const initTimer = maxTime => {
     clearInterval(timer);
     timer = setInterval(() => {
@@ -26,10 +29,9 @@ const initTimer = maxTime => {
         highscore=0;
         curhighscore.innerHTML=highscore;
         curLength = 4;
-        //sncksjdncjsdbcuisdcdisddbcuwbciwubcweubiucwb
-        // alert(`Time off! ${correctWord.toUpperCase()} was the correct word`);
+
         Swal.fire({
-            title: 'GAME OVER!',
+            title: 'Time Off!',
             text: ("You took too long. "+correctWord+ " was the correct word"),
             confirmButtonText: 'Restart',
           }).then((result) => {
@@ -130,14 +132,15 @@ const checkWord = async () => {
                 if(highscore<score){
                     highscore=score;
                     curhighscore.innerHTML=highscore;
+                    
                 }
                 curLength = userWord.length;
-// sdjygyfweuygfiwuegfiewgfauyewgfiuqwgfiuqewgfquiewgfiuwygfuiyqewgfiuyewgfiuwqygfqiyuewgfiqyewugfqiewufqwuef
-toastmsg.innerHTML="+"+userWord.length +" points";
-toastmsg.className = "show";
-setTimeout(function(){ toastmsg.className = toastmsg.className.replace("show", ""); }, 1500);
-                // console.log("You created a " + curLength + " long word!");
-                initGame();
+                // sdjygyfweuygfiwuegfiewgfauyewgfiuqwgfiuqewgfquiewgfiuwygfuiyqewgfiuyewgfiuwqygfqiyuewgfiqyewugfqiewufqwuef
+                toastmsg.innerHTML="+"+userWord.length +" points";
+                toastmsg.className = "show";
+                setTimeout(function(){ toastmsg.className = toastmsg.className.replace("show", ""); }, 1500);
+                                // console.log("You created a " + curLength + " long word!");
+                 initGame();
             }
             else {
                 score = 0;
@@ -169,6 +172,20 @@ setTimeout(function(){ toastmsg.className = toastmsg.className.replace("show", "
         if(highscore<score){
             highscore=score;
             curhighscore.innerHTML=highscore;
+            const response = await fetch(url4, {
+                method: 'POST',
+                // mode:'no-cors',
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                        },
+                body: JSON.stringify({
+                username: "fwewf",
+                score: score
+                }),
+            });
+
+            let result = await response;
+            console.log(result);
         }
         // replace alert with new toast
 
