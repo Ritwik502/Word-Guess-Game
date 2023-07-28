@@ -2,6 +2,7 @@ const wordText = document.querySelector(".word"),
     hintText = document.querySelector("#hint-txt"),
     curScore = document.querySelector(".scoreBox span"),
     curhighscore = document.querySelector(".highscoreBox span"),
+    glbhighscore = document.querySelector(".globalhighscor span"),
     timeText = document.querySelector(".time b"),
     inputField = document.querySelector("input"),
     refreshBtn = document.querySelector(".refresh-word"),
@@ -10,6 +11,8 @@ const wordText = document.querySelector(".word"),
 
 curScore.innerHTML = 0;
 curhighscore.innerHTML = 0;
+glbhighscore.innerHTML = 0;
+
 let correctWord, timer, score = 0, curLength = 4,wordArray,highscore=0,globalHighscore=0;
 // let letters = new Map();
 const url1 = 'https://random-word-api.herokuapp.com/word?length=';
@@ -24,12 +27,10 @@ const initTimer = maxTime => {
             maxTime--;
             return timeText.innerText = maxTime;
         }
-        score = 0;
+        score = 6;
         curScore.innerHTML = score;
         highscore=0;
         curhighscore.innerHTML=highscore;
-        curLength = 4;
-
         Swal.fire({
             title: 'Time Off!',
             text: ("You took too long. "+correctWord+ " was the correct word"),
@@ -42,34 +43,57 @@ const initTimer = maxTime => {
           initGame();
     }, 1000);
 }
-
-initGame = async () => {
-    if(!hintText.classList.contains("hide")){
-        hintText.classList.toggle("hide"); 
-    }   
-    initTimer(30);
-    let randomObj;
-    // let showWord=1;
+gethighscore=async()=>{
+    // console.log("334");
+    let topscorer;
     try {
-        const response = await fetch(url1 + curLength);
+        const response = await fetch(url3 + "?lim=1");
         const result = await response.json();
         // console.log(result);
-        randomObj = result[0];
+        topscorer = result[0];
         // console.log(randomObj);
     } catch (error) {
         console.error(error);
         return "NULL";
     }
-    console.log(randomObj);
+    console.log(topscorer);
+
+    return;
+}
+ getword=async()=>{
+    let newword;
+    try {
+        const response = await fetch(url1 + curLength);
+        const result = await response.json();
+        // console.log(result);
+        newword = result[0];
+        // console.log(randomObj);
+    } catch (error) {
+        console.error(error);
+        return "NULL";
+    }
+    console.log(newword);
 
     try {
-        const response = await fetch(url2 + randomObj);
+        const response = await fetch(url2 + newword);
         const result = await response.json();
         console.log(result[0].meanings[0].definitions[0].definition);
         hintText.innerHTML = result[0].meanings[0].definitions[0].definition;
     } catch (error) {
         initGame();
     }
+    return newword;
+ }
+
+initGame = async () => {
+    if(!hintText.classList.contains("hide")){
+        hintText.classList.toggle("hide"); 
+    }   
+    await gethighscore();
+    console.log("999");
+    let randomObj;
+    randomObj=await getword();
+    initTimer(30);
     const letters = new Map();
     wordArray = randomObj.split("");
     for (let i = wordArray.length - 1; i > 0; i--) {
@@ -198,7 +222,7 @@ const checkWord = async () => {
     }
 }
 
-initGame();
+// initGame();
 
 refreshBtn.addEventListener("click", ()=>{
     hintText.classList.toggle("hide");
