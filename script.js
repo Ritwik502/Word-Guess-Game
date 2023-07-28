@@ -62,6 +62,8 @@ gethighscore=async()=>{
 }
  getword=async()=>{
     let newword;
+
+    //get new word from random-word-API
     try {
         const response = await fetch(url1 + curLength);
         const result = await response.json();
@@ -74,13 +76,14 @@ gethighscore=async()=>{
     }
     console.log(newword);
 
+    //verify the word it it has a meaning in dictionaryapi else pick new word;
     try {
         const response = await fetch(url2 + newword);
         const result = await response.json();
         console.log(result[0].meanings[0].definitions[0].definition);
         hintText.innerHTML = result[0].meanings[0].definitions[0].definition;
     } catch (error) {
-        initGame();
+        newword=getword();
     }
     return newword;
  }
@@ -90,7 +93,7 @@ initGame = async () => {
         hintText.classList.toggle("hide"); 
     }   
     await gethighscore();
-    console.log("999");
+    // console.log("999");
     let randomObj;
     randomObj=await getword();
     initTimer(30);
