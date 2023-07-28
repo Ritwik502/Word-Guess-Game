@@ -15,12 +15,17 @@
     margin-right: 20px;
   } 
 }
-
+.globalhighscor p{
+  font-weight: bold;
+}
+h2{
+  font-family: 'Press Start 2P';
+}
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
 }
 body{
   display: flex;
@@ -28,7 +33,10 @@ body{
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #73ba9b;
+  background: #000000;
+  font-family: 'Poppins';
+  color:white;
+  /* font-family: 'Press Start 2P'; */
 }
 #hint-txt{
   text-align: center;
@@ -36,6 +44,9 @@ body{
   max-width:700px;
   height:wrap;
   transition: all 0.5s;
+  font-family: 'Press Start 2P';
+  font-size: small;
+
 }
 #hint-txt.hide{
  height:0;
@@ -43,11 +54,13 @@ body{
  overflow:hidden;
 } 
 .score{
-  margin: auto;
+  /* margin: auto; */
   text-align: center;
-  width: 50%;
-  border: 3px;
-  padding: 15px;
+  /* width/: 90%; */
+  /* border: 3px; */
+  padding: 5px;
+  font-family: 'Changa';
+
 }
 .hint{
   /* text-align: justify;
@@ -64,7 +77,7 @@ body{
 .container{
   width: 440px;
   border-radius: 7px;
-  background: #d5f2e3;
+  background: #000514;
   box-shadow: 0 10px 20px rgba(0,0,0,0.08);
   margin-left: 20px;
   margin-right: 20px;
@@ -74,11 +87,19 @@ body{
   /* width:70%; */
   /* max-width: 800px; */
   overflow-wrap: break-word;
+  /* font-family: 'changa'; */
+  
+
 }
 .info .rules{
   padding:20px;
   margin-left: 10px;
+  
+  /* text-align: center; */
   /* margin-bottom: 20px; */
+  /* font-family: 'Changa'; */
+  font-size: large;
+
 }
 .info h2{
   text-align: center;
@@ -105,6 +126,8 @@ body{
 }
 .content .details{
   margin: 25px 0 20px;
+  /* font-family: 'Press Start 2P'; */
+
 }
 .details p{
   font-size: 18px;
@@ -186,7 +209,7 @@ body{
   }
   .buttons button{
     padding: 14px 0;
-    font-size: 16px;
+    font-size:larger;
     width: calc(100% / 2 - 7px);
   }
 }
