@@ -27,7 +27,7 @@ const initTimer = maxTime => {
             maxTime--;
             return timeText.innerText = maxTime;
         }
-        score = 6;
+        score = 0;
         curScore.innerHTML = score;
         highscore=0;
         curhighscore.innerHTML=highscore;
@@ -45,19 +45,23 @@ const initTimer = maxTime => {
 }
 gethighscore=async()=>{
     // console.log("334");
-    let topscorer;
-    try {
-        const response = await fetch(url3 + "?lim=1");
-        const result = await response.json();
-        // console.log(result);
-        topscorer = result[0];
-        // console.log(randomObj);
-    } catch (error) {
-        console.error(error);
-        return "NULL";
+    //only call api if currhighscore can set global highscore or if highscore is not set yet
+    if(highscore==0 || globalHighscore<highscore){
+        let topscorer;
+        try {
+            const response = await fetch(url3 + "?lim=1");
+            const result = await response.json();
+            // console.log(result);
+            topscorer = result[0];
+            // console.log(randomObj);
+        } catch (error) {
+            console.error(error);
+            return "NULL";
+        }
+        console.log(topscorer);
+        globalHighscore=topscorer.score;
+        glbhighscore.innerHTML = globalHighscore;
     }
-    console.log(topscorer);
-
     return;
 }
  getword=async()=>{
@@ -83,7 +87,7 @@ gethighscore=async()=>{
         console.log(result[0].meanings[0].definitions[0].definition);
         hintText.innerHTML = result[0].meanings[0].definitions[0].definition;
     } catch (error) {
-        newword=getword();
+        newword=await getword();
     }
     return newword;
  }
@@ -92,6 +96,7 @@ initGame = async () => {
     if(!hintText.classList.contains("hide")){
         hintText.classList.toggle("hide"); 
     }   
+    console.log("Started");
     await gethighscore();
     // console.log("999");
     let randomObj;
@@ -199,23 +204,24 @@ const checkWord = async () => {
         if(highscore<score){
             highscore=score;
             curhighscore.innerHTML=highscore;
-            const response = await fetch(url4, {
-                method: 'POST',
-                // mode:'no-cors',
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                        },
-                body: JSON.stringify({
-                username: "fwewf",
-                score: score
-                }),
-            });
-
-            let result = await response;
-            console.log(result);
+            if(highscore>globalHighscore){
+                console.log("global ebest");
+                const response = await fetch(url4, {
+                    method: 'POST',
+                    // mode:'no-cors',
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                            },
+                    body: JSON.stringify({
+                    username: "fwewf",
+                    score: score
+                    }),
+                });
+    
+                let result =  response;
+                console.log(result);
+            }
         }
-        // replace alert with new toast
-
 
         toastmsg.innerHTML="Congrats! "+correctWord.toUpperCase()+" is the correct word. \n +"+userWord.length * 3 +" points";
         toastmsg.className = "show";
