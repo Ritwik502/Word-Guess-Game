@@ -159,7 +159,7 @@ input[type='text']::placeholder
   color: #aaa;
 }
 .content input:focus::placeholder{
-  color: #bfbfbf;
+  color: #ffffff57;
 }
 .content .buttons{
   display: flex;
@@ -181,16 +181,16 @@ input[type='text']::placeholder
   transform: scale(0.97);
 }
 .buttons .refresh-word{
-  background: #01110a;
+  background: #022919;
 }
 .buttons .refresh-word:hover{
-  background: #5f666d;
+  background: #000000;
 }
 .buttons .check-word{
   background: #ba2d0b;
 }
 .buttons .check-word:hover{
-  background: #ab0b0b;
+  background: #7e0b0b;
 }
 
 @media screen and (max-width: 470px) {
